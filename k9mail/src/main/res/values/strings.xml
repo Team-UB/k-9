@@ -1152,4 +1152,143 @@ Please submit bug reports, contribute new features and ask questions at
     <!-- Note: This references message_view_download_remainder -->
     <string name="crypto_download_complete_message_to_decrypt">Click \'Download complete message\' to allow decryption.</string>
 
+    <string name="preview_encrypted">*Encrypted*</string>
+    <string name="add_from_contacts">Add from Contacts</string>
+    <string name="crypto_settings_cancel">Cancel</string>
+    <string name="crypto_settings_ok">Proceed</string>
+    <string name="recipient_cc">Cc</string>
+    <string name="recipient_bcc">Bcc</string>
+    <string name="recipient_to">To</string>
+    <string name="recipient_from">From</string>
+    <string name="unknown_recipient"><![CDATA[<Unknown Recipient>]]></string>
+    <string name="address_type_home">Home</string>
+    <string name="address_type_work">Work</string>
+    <string name="address_type_other">Other</string>
+    <string name="address_type_mobile">Mobile</string>
+    <string name="compose_error_no_draft_folder">No Drafts folder configured for this account!</string>
+    <string name="compose_error_no_key_configured">No key configured for this account! Check your settings.</string>
+    <string name="crypto_mode_disabled">Don\'t encrypt</string>
+    <string name="crypto_mode_opportunistic">Encrypt if possible</string>
+    <string name="crypto_mode_private">Encrypt</string>
+    <string name="error_crypto_provider_incompatible">Crypto provider uses incompatible version. Please check your settings!</string>
+    <string name="error_crypto_provider_connect">Cannot connect to crypto provider, check your settings or click crypto icon to retry!</string>
+    <string name="error_crypto_provider_ui_required">Crypto provider access denied, click crypto icon to retry!</string>
+    <string name="error_crypto_inline_attach">PGP/INLINE mode does not support attachments!</string>
+    <string name="enable_inline_pgp">Enable PGP/INLINE</string>
+    <string name="disable_inline_pgp">Disable PGP/INLINE</string>
+    <string name="enable_sign_only">Enable PGP Sign-Only</string>
+    <string name="disable_sign_only">Disable PGP Sign-Only</string>
+    <string name="openpgp_inline_title">PGP/INLINE Mode</string>
+    <string name="openpgp_inline_text">The email is sent in PGP/INLINE format.\nThis should only be used for compatibility:</string>
+    <string name="openpgp_inline_plus_compat">Some clients only support this format</string>
+    <string name="openpgp_inline_minus_transit">Signatures may break during transit</string>
+    <string name="openpgp_inline_minus_attach">Attachments are not supported</string>
+    <string name="openpgp_inline_ok">Got it!</string>
+    <string name="openpgp_inline_disable">Disable</string>
+    <string name="openpgp_inline_keep_enabled">Keep Enabled</string>
+    <string name="openpgp_sign_only_ok">Got it!</string>
+    <string name="openpgp_sign_only_disable">Disable</string>
+    <string name="openpgp_sign_only_keep_enabled">Keep Enabled</string>
+    <string name="openpgp_dialog_sign_only_title">PGP Sign-Only Mode</string>
+    <string name="openpgp_dialog_sign_only_text">In this mode, your PGP key will be used to create a cryptographic signature of an unencrypted email.</string>
+    <string name="openpgp_dialog_sign_only_plus_verified">This does not encrypt the email, but verifies that it was sent from your key.</string>
+    <string name="openpgp_dialog_sign_only_minus_break">Signatures may break when sent to mailing lists.</string>
+    <string name="openpgp_dialog_sign_only_minus_attach">Signatures may be displayed as \'signature.asc\' attachments in some clients.</string>
+    <string name="openpgp_dialog_sign_only_neutral_encsigned">Encrypted messages always include a signature.</string>
+
+    <string name="crypto_msg_title_plaintext">Plaintext</string>
+    <string name="crypto_msg_unencrypted_sign_error">end-to-end signature contained an error</string>
+    <string name="crypto_msg_incomplete_signed">must fully download message to process signature</string>
+    <string name="crypto_msg_unsupported_signed">contains unsupported end-to-end signature</string>
+    <string name="crypto_msg_unsupported_encrypted">Message is encrypted, but in an unsupported format.</string>
+    <string name="crypto_msg_cancelled">Message is encrypted, but decryption was cancelled.</string>
+
+    <string name="crypto_msg_title_unencrypted_signed_e2e">End-to-End signed plaintext</string>
+    <string name="crypto_msg_unencrypted_sign_verified">from verified signer</string>
+
+    <string name="crypto_msg_title_unencrypted_signed">Signed plaintext</string>
+    <string name="crypto_msg_unencrypted_sign_mismatch">but end-to-end key didn\'t match sender</string>
+    <string name="crypto_msg_unencrypted_sign_expired">but end-to-end key is expired</string>
+    <string name="crypto_msg_unencrypted_sign_revoked">but end-to-end key is revoked</string>
+    <string name="crypto_msg_unencrypted_sign_insecure">but end-to-end key is not considered secure</string>
+    <string name="crypto_msg_unencrypted_sign_unknown">from unknown end-to-end key</string>
+
+    <string name="crypto_msg_title_encrypted_unknown">Encrypted</string>
+    <string name="crypto_msg_encrypted_error">but there was a decryption error</string>
+    <string name="crypto_msg_encrypted_incomplete">must fully download message for decryption</string>
+    <string name="crypto_msg_encrypted_no_provider">but no crypto app is configured</string>
+    <string name="crypto_msg_encrypted_unsupported">but in an unsupported format</string>
+    <string name="crypto_msg_encrypted_cancelled">but decryption was cancelled</string>
+
+    <string name="crypto_msg_title_encrypted_unsigned">Encrypted</string>
+    <string name="crypto_msg_encrypted_unsigned">but not end-to-end</string>
+
+    <string name="crypto_msg_title_encrypted_signed_e2e">End-to-End encrypted</string>
+    <string name="crypto_msg_encrypted_sign_verified">from verified sender</string>
+
+    <string name="crypto_msg_title_encrypted_signed">Encrypted</string>
+    <string name="crypto_msg_encrypted_sign_unknown">from unknown end-to-end key</string>
+    <string name="crypto_msg_encrypted_sign_mismatch">but end-to-end key didn\'t match sender</string>
+    <string name="crypto_msg_encrypted_sign_expired">but end-to-end key is expired</string>
+    <string name="crypto_msg_encrypted_sign_revoked">but end-to-end key is revoked</string>
+    <string name="crypto_msg_encrypted_sign_insecure">but end-to-end key is not considered secure</string>
+    <string name="crypto_msg_encrypted_sign_error">but end-to-end data has errors</string>
+    <string name="crypto_msg_encrypted_insecure">but encryption not considered secure</string>
+
+    <string name="crypto_info_ok">OK</string>
+    <string name="crypto_info_view_signer">View Signer</string>
+    <string name="crypto_info_view_sender">View Sender</string>
+    <string name="crypto_info_view_security_warning">Details</string>
+    <string name="locked_attach_unlock">Unlock</string>
+    <string name="locked_attach_unencrypted">This part was not encrypted, and may be insecure.</string>
+    <string name="locked_attach_title">Unprotected Attachment</string>
+    <string name="message_progress_text">Loading…</string>
+    <string name="messageview_decrypt_cancelled">Decryption was cancelled.</string>
+    <string name="messageview_decrypt_retry">Retry</string>
+    <string name="messageview_decrypt_incomplete">Encrypted message must be downloaded for decryption.</string>
+    <string name="messageview_crypto_error_title">Error decrypting email</string>
+
+    <string name="recipient_error_non_ascii">Special characters are currently not supported!</string>
+    <string name="recipient_error_parse_failed">Error parsing address!</string>
+    <string name="account_settings_crypto_support_sign_only">Show unencrypted signatures</string>
+    <string name="account_settings_crypto_support_sign_only_on">Unencrypted signatures will be displayed</string>
+    <string name="account_settings_crypto_support_sign_only_off">Unencrypted signatures will be ignored</string>
+    <string name="error_sign_only_no_encryption">Encryption unavailable in sign-only mode!</string>
+    <string name="unsigned_text_divider_label">Unsigned Text</string>
+    <string name="apg_deprecated_title">APG Deprecation Warning</string>
+    <string name="apg_deprecated_1">APG is no longer maintained!</string>
+    <string name="apg_deprecated_2">Because of this, support for APG has been removed from K-9 Mail.</string>
+    <string name="apg_deprecated_bullet_1">Development stopped in early 2014</string>
+    <string name="apg_deprecated_bullet_2">Contains unfixed security issues</string>
+    <string name="apg_learn_more">You can <a href="https://k9mail.github.io/2017/01/13/Why-APG-is-no-longer-supported.html">click here</a> to learn more.</string>
+    <string name="apg_deprecated_ok">Got it!</string>
+    <string name="apg">APG</string>
+    <string name="no_crypto_provider_see_global">No OpenPGP app configured, see global settings!</string>
+    <string name="crypto_no_provider_title">This email is encrypted</string>
+    <string name="crypto_no_provider_message">This email has been encrypted with OpenPGP.\nTo read it, you need to install and configure a compatible OpenPGP App.</string>
+    <string name="crypto_no_provider_button">Choose OpenPGP App</string>
+
+    <string name="mail_list_widget_text">K-9 Message List</string>
+    <string name="mail_list_widget_loading">Loading messages…</string>
+    <string name="fetching_folders_failed">Fetching folder list failed</string>
+    <string name="messageview_crypto_warning_details">Show Details</string>
+    <string name="error_recipient_crypto_retrieve">Error retrieving recipient status from OpenPGP provider!</string>
+
+    <string name="openpgp_enabled_error_title">Encryption not possible</string>
+    <string name="openpgp_enabled_error_msg">Some of the selected recipients don\'t support this feature!</string>
+    <string name="enable_encryption">Enable Encryption</string>
+    <string name="disable_encryption">Disable Encryption</string>
+    <string name="openpgp_description_text1">Encrypting messages ensures they can be read by the recipient, and nobody else.</string>
+    <string name="openpgp_description_text3">Encryption will only show up if supported by all recipients, and they must have sent you an email before.</string>
+    <string name="openpgp_description_text2">Toggle encryption by clicking this icon.</string>
+    <string name="openpgp_enabled_error_gotit">Got it</string>
+    <string name="openpgp_enabled_error_back">Back</string>
+    <string name="openpgp_enabled_error_disable">Disable Encryption</string>
+    <string name="openpgp_encryption">OpenPGP Encryption</string>
+
+    <string name="account_settings_crypto_prefer_encrypt">Autocrypt mutual mode</string>
+    <string name="dialog_autocrypt_mutual_title">Autocrypt mutual mode</string>
+    <string name="dialog_autocrypt_mutual_description_1">Messages will normally be encrypted by choice, or when replying to an encrypted message.</string>
+    <string name="dialog_autocrypt_mutual_description_2">If both sender and recipients enable mutual mode, encryption will be enabled by default.</string>
+    <string name="dialog_autocrypt_mutual_learn_more">You can <a href="https://k9mail.github.io/2018/02/26/OpenPGP-Considerations-Part-III-Autocrypt.html">click here</a> to learn more.</string>
 </resources>
