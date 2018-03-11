@@ -40,8 +40,14 @@ android {
     buildToolsVersion '21.1.2'
 
     defaultConfig {
+        applicationId "com.fsck.k9"
+        testApplicationId "com.fsck.k9.tests"
+
+        versionCode 25020
+        versionName '5.502'
+
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
