@@ -2108,64 +2108,25 @@ public class MessagingController implements Runnable {
         }
     }
 
-    /**
-     * Convert pending command to new format and call
-     * {@link #processPendingMoveOrCopy(PendingCommand, Account)}.
-     *
-     * <p>
-     * TODO: This method is obsolete and is only for transition from K-9 4.0 to K-9 4.2
-     * Eventually, it should be removed.
-     * </p>
-     *
-     * @param command
-     *         Pending move/copy command in old format.
-     * @param account
-     *         The account the pending command belongs to.
-     *
-     * @throws MessagingException
-     *         In case of an error.
-     */
-    private void processPendingMoveOrCopyOld2(PendingCommand command, Account account)
-            throws MessagingException {
-        PendingCommand newCommand = new PendingCommand();
-        int len = command.arguments.length;
-        newCommand.command = PENDING_COMMAND_MOVE_OR_COPY_BULK_NEW;
-        newCommand.arguments = new String[len + 1];
-        newCommand.arguments[0] = command.arguments[0];
-        newCommand.arguments[1] = command.arguments[1];
-        newCommand.arguments[2] = command.arguments[2];
-        newCommand.arguments[3] = Boolean.toString(false);
-        System.arraycopy(command.arguments, 3, newCommand.arguments, 4, len - 3);
+    void processPendingMoveOrCopy(PendingMoveOrCopy command, Account account) throws MessagingException {
+        String srcFolder = command.srcFolder;
+        String destFolder = command.destFolder;
+        boolean isCopy = command.isCopy;
 
-        processPendingMoveOrCopy(newCommand, account);
+        Map<String, String> newUidMap = command.newUidMap;
+        Collection<String> uids = newUidMap != null ? newUidMap.keySet() : command.uids;
+
+        processPendingMoveOrCopy(account, srcFolder, destFolder, uids, isCopy, newUidMap);
     }
 
-    /**
-     * Process a pending trash message command.
-     *
-     * @param command arguments = (String folder, String uid)
-     * @param account
-     * @throws MessagingException
-     */
-    private void processPendingMoveOrCopy(PendingCommand command, Account account)
-    throws MessagingException {
+    @VisibleForTesting
+    void processPendingMoveOrCopy(Account account, String srcFolder, String destFolder, Collection<String> uids,
+            boolean isCopy, Map<String, String> newUidMap) throws MessagingException {
         Folder remoteSrcFolder = null;
         Folder remoteDestFolder = null;
-        LocalFolder localDestFolder = null;
+        LocalFolder localDestFolder;
+
         try {
-            String srcFolder = command.arguments[0];
-            if (account.getErrorFolderName().equals(srcFolder)) {
-                return;
-            }
-            String destFolder = command.arguments[1];
-            String isCopyS = command.arguments[2];
-            String hasNewUidsS = command.arguments[3];
-
-            boolean hasNewUids = false;
-            if (hasNewUidsS != null) {
-                hasNewUids = Boolean.parseBoolean(hasNewUidsS);
-            }
-
             Store remoteStore = account.getRemoteStore();
             remoteSrcFolder = remoteStore.getFolder(srcFolder);
 
@@ -2189,15 +2150,8 @@ public class MessagingController implements Runnable {
                     }
                 }
 
-            } else {
-                for (int i = 4; i < command.arguments.length; i++) {
-                    String uid = command.arguments[i];
-                    if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
-                        messages.add(remoteSrcFolder.getMessage(uid));
-                    }
-                }
-            }
-            Collection<String> uids = command.newUidMap != null ? command.newUidMap.keySet() : command.uids;
+            List<Message> messages = new ArrayList<>();
+
             for (String uid : uids) {
                 if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
                     messages.add(remoteSrcFolder.getMessage(uid));
@@ -2252,11 +2206,16 @@ public class MessagingController implements Runnable {
              * This next part is used to bring the local UIDs of the local destination folder
              * upto speed with the remote UIDs of remote destination folder.
              */
-            if (!localUidMap.isEmpty() && remoteUidMap != null && !remoteUidMap.isEmpty()) {
-                for (Map.Entry<String, String> entry : remoteUidMap.entrySet()) {
+            if (newUidMap != null && remoteUidMap != null && !remoteUidMap.isEmpty()) {
+                Timber.i("processingPendingMoveOrCopy: changing local uids of %d messages", remoteUidMap.size());
+                for (Entry<String, String> entry : remoteUidMap.entrySet()) {
                     String remoteSrcUid = entry.getKey();
                     String localDestUid = localUidMap.get(remoteSrcUid);
                     String newUid = entry.getValue();
+                    String localDestUid = newUidMap.get(remoteSrcUid);
+                    if (localDestUid == null) {
+                        continue;
+                    }
 
                     Message localDestMessage = localDestFolder.getMessage(localDestUid);
                     if (localDestMessage != null) {
