@@ -2197,10 +2197,16 @@ public class MessagingController implements Runnable {
                     }
                 }
             }
+            Collection<String> uids = command.newUidMap != null ? command.newUidMap.keySet() : command.uids;
+            for (String uid : uids) {
+                if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+                    messages.add(remoteSrcFolder.getMessage(uid));
+                }
+            }
 
-            boolean isCopy = false;
-            if (isCopyS != null) {
-                isCopy = Boolean.parseBoolean(isCopyS);
+            if (messages.isEmpty()) {
+                Timber.i("processingPendingMoveOrCopy: no remote messages to move, skipping");
+                return;
             }
 
             if (!remoteSrcFolder.exists()) {
